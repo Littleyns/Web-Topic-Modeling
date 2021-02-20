@@ -78,7 +78,7 @@ const Dropzone = () => {
     }
 
     const validateFile = (file) => {
-        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/x-icon','application/pdf'];
+        const validTypes = ['application/pdf'];
         if (validTypes.indexOf(file.type) === -1) {
             return false;
         }
@@ -138,16 +138,18 @@ const Dropzone = () => {
 
             axios.post('/api/uploadfile', formData, {
                 onUploadProgress: (progressEvent) => {
-                    const uploadPercentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100);
+                    let uploadPercentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100);
                     progressRef.current.innerHTML = `${uploadPercentage}%`;
                     progressRef.current.style.width = `${uploadPercentage}%`;
-
+           
                     if (uploadPercentage === 100) {
                         uploadRef.current.innerHTML = 'File(s) Uploaded';
                         validFiles.length = 0;
                         setValidFiles([...validFiles]);
                         setSelectedFiles([...validFiles]);
                         setUnsupportedFiles([...validFiles]);
+                        
+                            
                         
                     
                     }
@@ -158,6 +160,18 @@ const Dropzone = () => {
             })
             
         }
+        axios({
+            url: '/process',
+            method: 'GET',
+            responseType: 'blob', // important
+          }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'file.zip');
+            document.body.appendChild(link);
+            link.click();
+          });
     }
 
     const closeUploadModal = () => {
@@ -216,7 +230,7 @@ const Dropzone = () => {
                 <div className="close" onClick={(() => closeUploadModal())}>X</div>
                 <div className="progress-container">
                     <span ref={uploadRef}></span>
-                    <Link to={`/process`} activeClassName="active"><div>Process converting to txt..</div></Link>
+                    
 
                     <div className="progress">
                         <div className="progress-bar" ref={progressRef}></div>

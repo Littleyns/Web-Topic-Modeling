@@ -14,9 +14,13 @@ function App() {
        
         <BrowserRouter>
         <div>
+          <nav className="navbar">
+          <Link to="/" >Accueil</Link>
+          <Link to="/modeling">Topic modeling</Link>
+          </nav>
           <div className="main-route-place">
             <Route exact path="/" component={Dropzone} />
-            <Route exact path="/process" component={Process} />
+            <Route exact path="/modeling" component={Process} />
             
           </div>
         </div>
