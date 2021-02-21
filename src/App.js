@@ -8,14 +8,13 @@ function App() {
 
   return (
     <div>
-      <p className="title">Topic modeling with textmining approach</p>
       <div className="content">
         
        
         <BrowserRouter>
         <div>
           <nav className="navbar">
-          <Link to="/" >Accueil</Link>
+          <Link to="/" >Convert pdf to txt</Link>
           <Link to="/modeling">Topic modeling</Link>
           </nav>
           <div className="main-route-place">

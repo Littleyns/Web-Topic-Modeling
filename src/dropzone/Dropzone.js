@@ -2,6 +2,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import axios from './axios';
 import './Dropzone.css';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import clicevent from'../process/Process.js'
+const FileDownload = require('js-file-download');
+
+
+
 const Dropzone = () => {
     
     const fileInputRef = useRef();
@@ -128,15 +133,15 @@ const Dropzone = () => {
         modalImageRef.current.style.backgroundImage = 'none';
     }
 
-    const uploadFiles = async () => {
+    const uploadFiles =  () => {
         uploadModalRef.current.style.display = 'block';
         uploadRef.current.innerHTML = 'File(s) Uploading...';
         for (let i = 0; i < validFiles.length; i++) {
             const formData = new FormData();
             formData.append('myFile', validFiles[i]);
             
-
-            axios.post('/api/uploadfile', formData, {
+            
+            axios.post('/process/upload/', formData, {
                 onUploadProgress: (progressEvent) => {
                     let uploadPercentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100);
                     progressRef.current.innerHTML = `${uploadPercentage}%`;
@@ -154,24 +159,33 @@ const Dropzone = () => {
                     
                     }
                 },
-            }) .catch(() => {
+                headers: {
+                    
+                    "content-type": "multipart/form-data"
+                  }}) .catch(() => {
                 uploadRef.current.innerHTML = `<span class="error">Error Uploading File(s)</span>`;
                 progressRef.current.style.backgroundColor = 'red';
             })
             
         }
-        axios({
-            url: '/process',
-            method: 'GET',
-            responseType: 'blob', // important
-          }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'file.zip');
-            document.body.appendChild(link);
-            link.click();
-          });
+       setTimeout(()=>axios({
+        url:'http://127.0.0.1:8000/process/download',
+        method:'GET',
+        responseType:'blob',
+        
+    }).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'file.zip');
+      document.body.appendChild(link);
+      link.click();
+    }),3000)
+        
+        
+           
+       
+       
     }
 
     const closeUploadModal = () => {
