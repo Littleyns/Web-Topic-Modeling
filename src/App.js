@@ -4,6 +4,7 @@ import Dropzone from "./dropzone/Dropzone";
 import Process from "./process/Process";
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+
 function App() {
 
   return (
@@ -18,8 +19,9 @@ function App() {
           <Link to="/modeling">Topic modeling</Link>
           </nav>
           <div className="main-route-place">
-            <Route exact path="/" component={Dropzone} />
-            <Route exact path="/modeling" component={Process} />
+            <Route exact path="/" component={() => <Dropzone download={true} path={"/process"} type={"pdf"} /> }/>
+            <Route path="/modeling" component={Process} />
+           
             
           </div>
         </div>

@@ -7,7 +7,7 @@ const FileDownload = require('js-file-download');
 
 
 
-const Dropzone = (props) => {
+const Dropzone = () => {
     
     const fileInputRef = useRef();
     const modalImageRef = useRef();
@@ -83,7 +83,7 @@ const Dropzone = (props) => {
     }
 
     const validateFile = (file) => {
-        const validTypes = props.type=='pdf'?['application/pdf']:['text/plain'];
+        const validTypes = ['application/pdf'];
         if (validTypes.indexOf(file.type) === -1) {
             return false;
         }
@@ -141,7 +141,7 @@ const Dropzone = (props) => {
             formData.append('myFile', validFiles[i]);
             
             
-            axios.post(props.path+'/upload/', formData, {
+            axios.post('/process/upload/', formData, {
                 onUploadProgress: (progressEvent) => {
                     let uploadPercentage = Math.floor((progressEvent.loaded / progressEvent.total) * 100);
                     progressRef.current.innerHTML = `${uploadPercentage}%`;
@@ -153,6 +153,10 @@ const Dropzone = (props) => {
                         setValidFiles([...validFiles]);
                         setSelectedFiles([...validFiles]);
                         setUnsupportedFiles([...validFiles]);
+                        
+                            
+                        
+                    
                     }
                 },
                 headers: {
@@ -161,16 +165,11 @@ const Dropzone = (props) => {
                   }}) .catch(() => {
                 uploadRef.current.innerHTML = `<span class="error">Error Uploading File(s)</span>`;
                 progressRef.current.style.backgroundColor = 'red';
-            }).then(()=>{
-                if(props.path=='/train'){
-                    window.location.href = "http://127.0.0.1:3000/modeling/select";
-                }
             })
             
         }
-        if(props.download==true){
        setTimeout(()=>axios({
-        url:'http://127.0.0.1:8000'+props.path+'/download',
+        url:'http://127.0.0.1:8000/process/download',
         method:'GET',
         responseType:'blob',
         
@@ -182,7 +181,6 @@ const Dropzone = (props) => {
       document.body.appendChild(link);
       link.click();
     }),3000)
-}
         
         
            

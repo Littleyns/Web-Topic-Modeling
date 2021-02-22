@@ -1,36 +1,19 @@
 import React from 'react'
 import './Process.css'
+import Select from './Select.js'
 import axios from 'axios';
-
+import Dropzone from '../dropzone/Dropzone'
+import { BrowserRouter, Route, Link } from "react-router-dom";
 const FileDownload = require('js-file-download');
 
-function Process() {
-    const clicevent=()=>{
-        
-          axios({
-              url:'http://127.0.0.1:8000/process/download',
-              method:'GET',
-              responseType:'blob',
-              
-          }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'file.zip');
-            document.body.appendChild(link);
-            link.click();
-          });
-
-        
-    }
-        
-    
+function Process() {  
     return (
-        <div>
-            <h1>Processing the conversion to txt</h1>
-            
-            <button className="button" onClick={clicevent} >process</button>
-            
+        <div >
+         <BrowserRouter>
+         {/*<Route exact path="/modeling/select" component={Select} />*/}
+         <Route exact path="/modeling" component={() => <Dropzone download={false} path={"/train"} type={"txt"} /> }/>
+         <Route exact path="/modeling/select" component={() => <Select/> }/>
+         </BrowserRouter>
         </div>
     )
 }

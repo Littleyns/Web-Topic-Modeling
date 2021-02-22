@@ -1,0 +1,9 @@
+.select{
+    display:flex;
+    flex-direction:column;
+    row-gap:50px;
+}
+.select button{
+    width:400px;
+    height:100px;
+}
