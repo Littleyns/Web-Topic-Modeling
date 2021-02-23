@@ -19,7 +19,7 @@ const Dropzone = (props) => {
     const [validFiles, setValidFiles] = useState([]);
     const [unsupportedFiles, setUnsupportedFiles] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
-   
+
 
     useEffect(() => {
         let filteredArr = selectedFiles.reduce((acc, current) => {
