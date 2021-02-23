@@ -4,11 +4,13 @@ import React, { useRef, useState, useEffect } from 'react';
 import './Similarity.css'
 import showResult from '../dropzone/DropzoneUnique.js'
 function Similiarity() {
-    
+
     return (
         <div>
-          <SimilarityResult/>
+             <SimilarityResult/>
             <DropzoneUnique/>
+            
+            
             
             
             

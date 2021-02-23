@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useRef, useState, useEffect } from 'react';
 import './SimilarityResult.css'
+import axios from './axios'
 function SimilarityResult() {
+    const resultdiv = useRef();
     return (
-        <div className="Similarity__result">
-            <p>loooooooooooooooooooololololololol</p>
-            <p>loooooooooooooooooooololololololol</p>
-            <p>loooooooooooooooooooololololololol</p>
-            <p>loooooooooooooooooooololololololol</p>
+        <div className="Similarity__result" ref={resultdiv}>
+            <div className="Similarity__container">
+            
+            </div>
         </div>
     )
 }

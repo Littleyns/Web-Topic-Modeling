@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import axios from './axios'
-
 function DropzoneUnique() {
     const [showResult, setShowResult]=useState([]);
     const uploadRef = useRef(false);
@@ -12,14 +11,31 @@ function DropzoneUnique() {
 
         return true;
     }
-    const handleFiles =(e)=>{
+    const handleFiles = async (e)=>{
         if(validateFile(e.target.files[0])){
             uploadRef.current.innerText=''
             const formData = new FormData();
             formData.append('compareto', e.target.files[0]);
-            axios.post('/train/uploadunique/',formData)
+            await axios.post('/train/uploadunique/',formData)
             setShowResult(true);
             document.getElementsByClassName('Similarity__result')[0].style.display='block';
+            axios({
+                url:'http://127.0.0.1:8000/train/uploadunique/getresult',
+                method:'GET',
+            }).then((resp)=>{
+                    
+                    
+                    
+                   
+                   resp.data.map(m=>{
+                    let p = document.createElement('p')
+                    let key = Object.keys(m)[0]
+                    p.innerText=key+"   ==>  "+m[key]
+                    document.getElementsByClassName('Similarity__container')[0].appendChild(p)
+                   });
+                
+                
+            });
 
         }else{
             uploadRef.current.style.color='red'
