@@ -12,24 +12,24 @@
     margin-bottom: 5px;
 }
 
-.container {
-    transform: translateY(-100%);
-}
+
 
 .container p {
     color: red;
     text-align: center;
+    
 }
 
 .drop-container {
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    width: 800px;
+    width: 100%;
     height: 200px;
-    background-color: lightgray;
-    border-width:0.08rem;
+    background-color: #ECEDED;
+    border-width:0.2rem;
+  border-radius:7px;
     
 }
 
@@ -45,7 +45,7 @@
 
 .drop-message {
     text-align: center;
-    color: #FFFBFC;
+    color: gray;
     font-family: Arial;
     font-size: 20px;
 }
@@ -75,7 +75,7 @@
 }
   
 .file-display-container {
-    position: fixed;
+    z-index:999;
     width: 805px;
 }
   
