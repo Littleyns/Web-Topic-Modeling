@@ -9,9 +9,17 @@ function App() {
 
   return (
     <div>
+      
       <div className="content">
-        
-       
+      <div className="header">
+        <p>Logo</p>
+      </div>
+      <div className="under-header">
+        <div id="converted" className="stats"><span className="var">xxxx</span>Fichiers pdf convertis</div>
+        <div id="gigabyte" className="stats"><span className="var">xxxx</span>envoyées au serveur</div>
+        <div id="tm" className="stats"><span className="var">xxxx</span>Fichiers texte étudiées</div>
+      </div>
+      <div className="main">
         <BrowserRouter>
         <div>
           <nav className="navbar">
@@ -26,6 +34,7 @@ function App() {
           </div>
         </div>
       </BrowserRouter>
+      </div>
       </div>
     </div>
   );

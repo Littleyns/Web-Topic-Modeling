@@ -19,14 +19,14 @@ function DropzoneUnique() {
             await axios.post('/train/uploadunique/',formData)
             setShowResult(true);
             document.getElementsByClassName('Similarity__result')[0].style.display='block';
-            axios({
+            await axios({
                 url:'http://127.0.0.1:8000/train/uploadunique/getresult',
                 method:'GET',
             }).then((resp)=>{
                     
                     
                     
-                   
+                   console.log(resp.data)
                    resp.data.map(m=>{
                     let p = document.createElement('p')
                     let key = Object.keys(m)[0]

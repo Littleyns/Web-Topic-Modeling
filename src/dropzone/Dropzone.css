@@ -6,7 +6,7 @@
     color: white;
     text-transform: uppercase;
     outline: none;
-    background-color: #4aa1f3;
+    background-color: #FFFBFC;
     font-weight: bold;
     padding: 8px 15px;
     margin-bottom: 5px;
@@ -28,7 +28,9 @@
     margin: 0;
     width: 800px;
     height: 200px;
-    border: 4px dashed #4aa1f3;
+    background-color: lightgray;
+    border-width:0.08rem;
+    
 }
 
 .upload-icon {
@@ -43,7 +45,7 @@
 
 .drop-message {
     text-align: center;
-    color: #4aa1f3;
+    color: #FFFBFC;
     font-family: Arial;
     font-size: 20px;
 }
@@ -102,7 +104,7 @@
     border-radius: 2px;
     box-shadow: 1px 1px 2px #abc;
     color: #fff;
-    background: #0080c8;
+    background: #FFFBFC;
     text-transform: uppercase;
 }
   
@@ -110,7 +112,7 @@
     display: inline-block;
     vertical-align:top;
     margin-left: 50px;
-    color: #4aa1f3;
+    color: #FFFBFC;
 }
 
 .file-error {
