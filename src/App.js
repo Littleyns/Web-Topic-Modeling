@@ -5,7 +5,9 @@ import Process from "./process/Process";
 import ReactDOM from 'react-dom';
 import {ButtonGroup,Button} from '@material-ui/core';
 import { BrowserRouter, Route, Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 function App() {
 const [currentTab, setCurrentTab] = useState(["2","1"])
 useEffect(()=>{
@@ -22,6 +24,8 @@ const changeTab =(e)=>{
       <div className="content">
       <div className="header">
         <p>Logo</p>
+       
+       
       </div>
       <div className="under-header">
         <div id="converted" className="stats"><span className="var">xxxx</span>Fichiers pdf convertis</div>
@@ -42,10 +46,14 @@ const changeTab =(e)=>{
           </nav>
           
           <div className="main-route-place">
+            <div className="controllers"><FontAwesomeIcon  icon={ faChevronLeft } size="2x" /></div>
+          
             <Route exact path="/" component={() => <Dropzone download={true} path={"/process"} type={"pdf"} /> }/>
             <Route path="/modeling" component={Process} />
+            <div className="controllers"><FontAwesomeIcon   icon={ faChevronRight } size="2x" /></div>
             </div>
       </BrowserRouter>
+    
       </div>
       </div>
    
