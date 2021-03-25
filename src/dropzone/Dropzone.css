@@ -3,7 +3,7 @@
 } 
 
 .file-upload-btn {
-    color: white;
+    color: black;
     text-transform: uppercase;
     outline: none;
     background-color: #FFFBFC;
@@ -260,4 +260,18 @@
 
 .error {
     color: red;
+}
+.selectedFiles{
+    margin-top:50px;
+    height:150px;
+    background-color:rgba(0, 0, 0, 0.2);
+    color:lightgray;
+    text-align:center;
+    display:flex;
+    flex-direction:row;
+    overflow-x:scroll;
+    border-radius:10px;
+}
+.container{
+    height:fit-content;
 }

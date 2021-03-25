@@ -7,7 +7,7 @@ function Select() {
         <div>
             <div className="select">
             <Link to="/modeling/similarity"><button>Similarity Topics</button></Link> 
-          <button>LDA ( Latent Dirichlet Allocation ) not available for now..</button>
+          <button>LDA ( Latent Dirichlet Allocation ) pas encore prêt :)</button>
            </div>
         </div>
     )

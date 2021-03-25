@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import axios from './axios';
 import './Dropzone.css';
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import Cards from './Cards'
 import clicevent from'../process/Process.js'
 const FileDownload = require('js-file-download');
 
@@ -198,7 +199,7 @@ const Dropzone = (props) => {
     return (
         <>
             <div className="container">
-                {unsupportedFiles.length === 0 && validFiles.length ? <button className="file-upload-btn" onClick={() => uploadFiles()}>Upload Files</button> : ''} 
+                {unsupportedFiles.length === 0 && validFiles.length ? <button className="file-upload-btn" onClick={() => uploadFiles()}>Convertir en</button> : ''} 
                 {unsupportedFiles.length ? <p>Please remove all unsupported files.</p> : ''}
                 <div className="drop-container"
                     onDragOver={dragOver}
@@ -218,21 +219,17 @@ const Dropzone = (props) => {
                         multiple
                         onChange={filesSelected}
                     />
+                    
                 </div>
+     
                 <div className="file-display-container">
+                <div className="selectedFiles">Aucun fichier selectionné
                     {
                         validFiles.map((data, i) => 
-                            <div className="file-status-bar" key={i}>
-                                <div onClick={!data.invalid ? () => openImageModal(data) : () => removeFile(data.name)}>
-                                    <div className="file-type-logo"></div>
-                                    <div className="file-type">{fileType(data.name)}</div>
-                                    <span className={`file-name ${data.invalid ? 'file-error' : ''}`}>{data.name}</span>
-                                    <span className="file-size">({fileSize(data.size)})</span> {data.invalid && <span className='file-error-message'>({errorMessage})</span>}
-                                </div>
-                                <div className="file-remove" onClick={() => removeFile(data.name)}>X</div>
-                            </div>
+                            <Cards data={data} i={i} fileSize={fileSize} errorMessage={errorMessage} removeFile={removeFile} openImageModal={openImageModal} />
                         )
                     }
+                    </div>
                 </div>
             </div>
             <div className="modal" ref={modalRef}>
@@ -251,7 +248,9 @@ const Dropzone = (props) => {
                     <div className="progress">
                         <div className="progress-bar" ref={progressRef}></div>
                     </div>
+                     
                 </div>
+               
             </div>
         </>
     );

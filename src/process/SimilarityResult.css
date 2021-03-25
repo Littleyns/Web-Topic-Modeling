@@ -16,8 +16,12 @@
     width:50%;
     
     padding:50px;
-    color:red;
+   
     font-weight:bolder;
     margin:auto;
     
+}
+
+.Similarity__container > p{
+    color:red;
 }

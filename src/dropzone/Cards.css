@@ -1,0 +1,12 @@
+.file-status-bar{
+    color:black;
+    background-color:lightgray!important;
+    display:flex;
+    flex-direction:column;
+    height:max-content;
+ }
+ .file-status-bar *{
+    color:black;
+
+ }
+ 
